@@ -64,13 +64,27 @@
 	var User = _react2.default.createClass({
 	  displayName: 'User',
 	
+	
 	  render: function render() {
+	    // if this is true, twitter variable to equal twitter, else, render null (this or that)
+	    var twitter = this.props.twitter ? this.renderTwitter(this.props.twitter) : null;
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      'Jaemin Han'
+	      this.props.name,
+	      ': ',
+	      twitter
+	    );
+	  },
+	
+	  renderTwitter: function renderTwitter(twitter) {
+	    return _react2.default.createElement(
+	      'a',
+	      { href: 'http://twitter.com/' + twitter },
+	      'Twitter'
 	    );
 	  }
+	
 	});
 	
 	var App = _react2.default.createClass({
@@ -85,13 +99,22 @@
 	        null,
 	        'User List:'
 	      ),
-	      _react2.default.createElement(User, null)
+	      _react2.default.createElement(User, { name: 'Jaemin Han', twitter: 'jaeminjaemin' }),
+	      _react2.default.createElement(User, { name: 'Bobby King' })
 	    );
 	  }
 	});
 	
 	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('root'));
 	
+	// NOTE 1 START
+	// Terminal Command Line --> npm i -g http-server
+	// http-server --> turns into a quick server
+	// http://127.0.0.1:8080/
+	// END *************************************************
+	
+	
+	// NOTE 2 START
 	// The syntax below is an example of creating react component without using JSX
 	
 	// var React = require('react')
@@ -105,6 +128,7 @@
 	
 	// Sends app component to mount point
 	// ReactDOM.render(<App />, document.getElementById('root'))
+	// END *************************************************
 
 /***/ },
 /* 1 */

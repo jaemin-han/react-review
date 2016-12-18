@@ -7,9 +7,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 let User = React.createClass({
+
   render: function() {
-    return <div>Jaemin Han</div>
+    // if this is true, twitter variable to equal twitter, else, render null (this or that)
+    let twitter = (this.props.twitter) ? this.renderTwitter(this.props.twitter) : null
+    return <div>{this.props.name}: {twitter}</div>
+  },
+
+  renderTwitter: function(twitter) {
+    return <a href={'http://twitter.com/' + twitter}>Twitter</a>
   }
+
 })
 
 let App = React.createClass({
@@ -17,7 +25,8 @@ let App = React.createClass({
     return (
       <div>
         <h1>User List:</h1>
-        <User />
+        <User name="Jaemin Han" twitter="jaeminjaemin" />
+        <User name="Bobby King"/>
       </div>
     )
   }
