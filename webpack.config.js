@@ -4,7 +4,6 @@ module.exports = {
     filename: "./build/bundle.js",
     sourceMapFilename: "./build/bundle.map"
   },
-  // This tells you what original line has a problem.
   devtool: '#source-map',
   module: {
     loaders: [
