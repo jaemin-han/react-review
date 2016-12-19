@@ -6,33 +6,42 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-let User = React.createClass({
+let Counter = React.createClass({
 
-  render: function() {
-    // if this is true, twitter variable to equal twitter, else, render null (this or that)
-    let twitter = (this.props.twitter) ? this.renderTwitter(this.props.twitter) : null
-    return <div>{this.props.name}: {twitter}</div>
+  getInitialState: function() {
+    return {
+      count: 0
+    }
   },
 
-  renderTwitter: function(twitter) {
-    return <a href={'http://twitter.com/' + twitter}>Twitter</a>
+  componentDidMount: function() {
+
+    this.setState({
+      count: this.props.start
+    })
+
+    setInterval(() => {
+      this.setState({
+        count: this.state.count + 1
+      })
+    }, 1000)
+
+  },
+
+  render: function() {
+    return <div>Count: {this.state.count}</div>
   }
 
 })
 
 let App = React.createClass({
   render: function() {
-    return (
-      <div>
-        <h1>User List:</h1>
-        <User name="Jaemin Han" twitter="jaeminjaemin" />
-        <User name="Bobby King"/>
-      </div>
-    )
+    return <Counter start={5} />
   }
 })
 
 ReactDOM.render(<App />, document.getElementById('root'))
+
 
 // NOTE 1 START
  // Terminal Command Line --> npm i -g http-server
