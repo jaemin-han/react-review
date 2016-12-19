@@ -1,42 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
+import AppLayout from './layouts/AppLayout'
+import Users from './components/Users'
+import UserProfile from './components/UserProfile'
 
-let User = function(props) {
-  return (
-    <div className="user">
-      <div>Name: {props.name}</div>
-    </div>
-  )
-}
-
-let App = React.createClass({
-
-  getInitialState: function() {
-    return {
-      users: []
-    }
-  },
-
-  componentDidMount: function() {
-    axios.get('http://swapi.co/api/people').then(results => {
-      // console.log(results.data)
-      this.setState({
-        users: results.data.results
-      })
-    })
-  },
-
-  render: function() {
-    return (
-      <div>
-        <h1>Star Wars Characters:</h1>
-        {this.state.users.map(function(user) {
-          return <User name="{user.name}" key={user.name} />
-        })}
-      </div>
-    )
-  }
-})
-
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render((
+  <Router history={browserHistory}>
+    <Route path="/" component={AppLayout}>
+      <IndexRoute component={Users} />
+      <Route path="/profile" component={UserProfile} />
+    </Route>
+  </Router>
+), document.getElementById('root'))
