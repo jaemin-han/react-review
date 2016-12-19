@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import axios from 'axios'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import AppLayout from './layouts/AppLayout'
 import Users from './components/Users'
@@ -10,7 +9,7 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={AppLayout}>
       <IndexRoute component={Users} />
-      <Route path="/profile" component={UserProfile} />
+      <Route path="/profile/:id" component={UserProfile} />
     </Route>
   </Router>
 ), document.getElementById('root'))

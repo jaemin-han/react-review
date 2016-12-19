@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 // import { Link } from 'react-router'
 import User from './User'
 import { getPeople } from '../xhr'
@@ -14,7 +13,9 @@ let Users = React.createClass({
 
   componentDidMount: function() {
     getPeople().then(results => {
+      console.log(results)
       this.setState({
+
         users: results.data.results
       })
     })
@@ -24,10 +25,9 @@ let Users = React.createClass({
     return (
       <div>
         <h3>Star Wars Characters:</h3>
-      {/*Navigate to a different page (/other)*/}
-        {/*<Link to="/other">Other</Link>*/}
         {this.state.users.map(user => {
-          return <User name={user.name} key={user.name} />
+          let id = user.url.split('/')[5]
+          return <User name={user.name} id={id} key={user.name} />
         })}
       </div>
     )
